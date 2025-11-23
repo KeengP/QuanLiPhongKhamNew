@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2>Chào mừng đến với <strong style="color:#007bff;">HealthCareVN</strong></h2>
+        <p>Hệ thống quản lý phòng khám hiện đại, nhanh chóng và tiện lợi cho bác sĩ và bệnh nhân.</p>
+    </div>
+
+    <div class="row text-center">
+        <!-- Bác sĩ -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-person-badge" style="font-size: 2rem; color: green;"></i>
+                    <h5 class="card-title mt-2">Bác sĩ</h5>
+                    <p class="card-text">Quản lý danh sách bác sĩ và chuyên khoa</p>
+                    <!-- Liên kết đến trang danh sách bác sĩ -->
+                    <a asp-controller="BacSi" asp-action="Index" class="btn btn-success">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bệnh nhân -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-people" style="font-size: 2rem; color: #0dcaf0;"></i>
+                    <h5 class="card-title mt-2">Bệnh nhân</h5>
+                    <p class="card-text">Theo dõi thông tin và lịch sử khám bệnh</p>
+                    <!-- ✅ Sửa lại chỗ này -->
+                    <a asp-controller="BenhNhan" asp-action="Index" class="btn btn-info">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lịch hẹn -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-calendar-check" style="font-size: 2rem; color: #ffc107;"></i>
+                    <h5 class="card-title mt-2">Lịch hẹn</h5>
+                    <p class="card-text">Tạo và quản lý các cuộc hẹn khám bệnh</p>
+                    <a href="#" class="btn btn-warning text-white">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Đơn thuốc -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-file-medical" style="font-size: 2rem; color: red;"></i>
+                    <h5 class="card-title mt-2">Đơn thuốc</h5>
+                    <p class="card-text">Quản lý đơn thuốc và thanh toán nhanh</p>
+                    <a href="#" class="btn btn-danger">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-primary mt-4 text-center">
+        <i class="bi bi-heart-pulse"></i>
+        <strong>HealthCareVN</strong> – Nâng cao chất lượng chăm sóc sức khỏe cộng đồng!
+    </div>
+
+    <div class="mt-4">
+        <h5><i class="bi bi-newspaper"></i> Tin tức - Thông báo</h5>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <i class="bi bi-hospital"></i>
+                Phòng khám phát triển dịch vụ khám tổng hợp cuối năm 2025.
+            </li>
+            <li class="list-group-item">
+                <i class="bi bi-clipboard2-pulse"></i>
+                Cập nhật hệ thống đơn điện tử giúp giảm thời gian chờ.
+            </li>
+            <li class="list-group-item">
+                <i class="bi bi-mortarboard"></i>
+                Hợp tác cùng bệnh viện Bạch Mai trong đào tạo bác sĩ trẻ.
+            </li>
+        </ul>
+    </div>
+</div>
+ 

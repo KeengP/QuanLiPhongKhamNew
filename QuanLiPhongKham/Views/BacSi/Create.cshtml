@@ -1,0 +1,34 @@
+﻿@model QuanLiPhongKham.Models.BacSi
+
+@{
+    ViewData["Title"] = "Thêm Bác sĩ";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Thêm Bác sĩ</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label>Họ Tên</label>
+            <input asp-for="HoTen" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Chuyên Khoa</label>
+            <input asp-for="ChuyenKhoa" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Số Điện Thoại</label>
+            <input asp-for="SoDienThoai" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <button class="btn btn-success">Lưu</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<QuanLiPhongKham.Models.BacSi>
+
+@{
+    ViewData["Title"] = "Danh sách Bác sĩ";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Danh sách Bác sĩ</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">← Quay lại trang chủ</a>
+        <a asp-action="Create" class="btn btn-success">+ Thêm Bác sĩ</a>
+    </div>
+
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Họ Tên</th>
+                <th>Chuyên Khoa</th>
+                <th>Số Điện Thoại</th>
+                <th>Email</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bacSi in Model)
+            {
+                <tr>
+                    <td>@bacSi.BacSiId</td>
+                    <td>@bacSi.HoTen</td>
+                    <td>@bacSi.ChuyenKhoa</td>
+                    <td>@bacSi.SoDienThoai</td>
+                    <td>@bacSi.Email</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@bacSi.BacSiId" class="btn btn-warning btn-sm">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@bacSi.BacSiId" class="btn btn-danger btn-sm">Xóa</a>
+                        <a asp-action="Details" asp-route-id="@bacSi.BacSiId" class="btn btn-info btn-sm">Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

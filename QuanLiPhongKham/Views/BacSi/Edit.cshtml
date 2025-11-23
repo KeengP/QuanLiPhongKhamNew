@@ -1,0 +1,36 @@
+﻿@model QuanLiPhongKham.Models.BacSi
+
+@{
+    ViewData["Title"] = "Sửa Bác sĩ";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Sửa thông tin Bác sĩ</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="BacSiId" />
+
+        <div class="mb-3">
+            <label>Họ Tên</label>
+            <input asp-for="HoTen" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Chuyên khoa</label>
+            <input asp-for="ChuyenKhoa" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Số Điện Thoại</label>
+            <input asp-for="SoDienThoai" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-warning">Cập nhật</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>

@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ - HealthCareVN";
+}
+
+<!-- Font Awesome (Icon) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="container-fluid p-4">
+    <h2 class="text-primary mb-3">Chào mừng đến với <strong>HealthCareVN</strong></h2>
+    <p class="text-muted">Hệ thống quản lý phòng khám hiện đại, nhanh chóng và tiện lợi cho bác sĩ và bệnh nhân.</p>
+
+    <div class="row mt-4">
+        <!-- Thẻ Bác sĩ -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-md fa-2x text-success mb-3"></i>
+                    <h5 class="fw-bold text-dark">Bác sĩ</h5>
+                    <p class="text-muted">Quản lý danh sách bác sĩ và chuyên khoa</p>
+                    <a href="/BacSi" class="btn btn-outline-success btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thẻ Bệnh nhân -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-2x text-info mb-3"></i>
+                    <h5 class="fw-bold text-dark">Bệnh nhân</h5>
+                    <p class="text-muted">Theo dõi thông tin và lịch sử khám</p>
+                    <a href="/BenhNhan" class="btn btn-outline-info btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thẻ Lịch hẹn -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-check fa-2x text-warning mb-3"></i>
+                    <h5 class="fw-bold text-dark">Lịch hẹn</h5>
+                    <p class="text-muted">Tạo và quản lý các cuộc hẹn khám bệnh</p>
+                    <a href="/LichHen" class="btn btn-outline-warning btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thẻ Đơn thuốc & Thanh toán -->
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-medical fa-2x text-danger mb-3"></i>
+                    <h5 class="fw-bold text-dark">Đơn thuốc</h5>
+                    <p class="text-muted">Quản lý kê đơn và thanh toán nhanh chóng</p>
+                    <a href="/ThanhToan" class="btn btn-outline-danger btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner giới thiệu -->
+    <div class="alert alert-primary mt-4 shadow-sm rounded-3">
+        <i class="fas fa-heartbeat me-2"></i>
+        <strong>HealthCareVN</strong> – Nâng cao chất lượng chăm sóc sức khỏe cộng đồng!
+    </div>
+
+    <!-- Phần tin tức hoặc thông báo -->
+    <div class="mt-4">
+        <h4 class="text-secondary mb-3"><i class="fas fa-newspaper me-2"></i>Tin tức - Thông báo</h4>
+        <ul class="list-group shadow-sm">
+            <li class="list-group-item">🩺 Phòng khám triển khai dịch vụ khám tổng quát cuối năm 2025.</li>
+            <li class="list-group-item">💊 Cập nhật hệ thống kê đơn điện tử mới giúp giảm thời gian chờ.</li>
+            <li class="list-group-item">🏥 Hợp tác cùng bệnh viện Bạch Mai trong công tác đào tạo bác sĩ trẻ.</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f7f9fb;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn-outline-success:hover,
+    .btn-outline-info:hover,
+    .btn-outline-warning:hover,
+    .btn-outline-danger:hover {
+        color: white !important;
+    }
+</style>

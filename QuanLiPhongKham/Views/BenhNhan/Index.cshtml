@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QuanLiPhongKham.Models.BenhNhan>
+
+@{
+    ViewData["Title"] = "Danh sách Bệnh nhân";
+}
+
+<h2 class="text-center text-primary mb-4">Danh sách Bệnh nhân</h2>
+
+<div class="mb-3">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+        ← Quay lại trang chủ
+    </a>
+
+    <a asp-action="Create" class="btn btn-success float-end">
+        + Thêm bệnh nhân
+    </a>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.HoTen</td>
+                <td>@item.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                <td>@item.GioiTinh</td>
+                <td>@item.DiaChi</td>
+                <td>@item.SoDienThoai</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.BenhNhanId" class="btn btn-info btn-sm">Xem</a>
+                    <a asp-action="Edit" asp-route-id="@item.BenhNhanId" class="btn btn-warning btn-sm">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.BenhNhanId" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

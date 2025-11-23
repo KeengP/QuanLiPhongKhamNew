@@ -1,0 +1,25 @@
+﻿@model QuanLiPhongKham.Models.BacSi
+
+@{
+    ViewData["Title"] = "Chi tiết bác sĩ";
+}
+
+<h2 class="text-center mb-4">Chi tiết bác sĩ</h2>
+
+<div class="card p-4 shadow">
+    <dl class="row">
+        <dt class="col-sm-3">Họ tên</dt>
+        <dd class="col-sm-9">@Model.HoTen</dd>
+
+        <dt class="col-sm-3">Chuyên khoa</dt>
+        <dd class="col-sm-9">@Model.ChuyenKhoa</dd>
+
+        <dt class="col-sm-3">Số điện thoại</dt>
+        <dd class="col-sm-9">@Model.SoDienThoai</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+    </dl>
+
+    <a asp-action="Index" class="btn btn-secondary mt-3">← Quay lại danh sách</a>
+</div>

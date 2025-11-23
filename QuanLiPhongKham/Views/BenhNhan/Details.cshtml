@@ -1,0 +1,40 @@
+﻿@model QuanLiPhongKham.Models.BenhNhan
+
+@{
+    ViewData["Title"] = "Chi tiết bệnh nhân";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3 text-primary">Chi tiết bệnh nhân</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Mã bệnh nhân</th>
+            <td>@Model.BenhNhanId</td>
+        </tr>
+        <tr>
+            <th>Họ tên</th>
+            <td>@Model.HoTen</td>
+        </tr>
+        <tr>
+            <th>Ngày sinh</th>
+            <td>@Model.NgaySinh?.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <th>Giới tính</th>
+            <td>@Model.GioiTinh</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td>@Model.SoDienThoai</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td>@Model.DiaChi</td>
+        </tr>
+    </table>
+
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    <a asp-action="Edit" asp-route-id="@Model.BenhNhanId" class="btn btn-warning">Sửa</a>
+    <a asp-action="Delete" asp-route-id="@Model.BenhNhanId" class="btn btn-danger">Xóa</a>
+</div>
