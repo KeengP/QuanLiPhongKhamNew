@@ -1,0 +1,44 @@
+﻿@model QuanLiPhongKham.Models.LichHen
+
+<h2>Sửa lịch hẹn</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="LichHenId" />
+
+    <div class="form-group">
+        <label>Bệnh nhân</label>
+        <select class="form-control" asp-for="BenhNhanId">
+            @foreach (var bn in ViewBag.BenhNhan)
+            {
+                <option value="@bn.BenhNhanId" selected="@(bn.BenhNhanId == Model.BenhNhanId)">
+                    @bn.HoTen
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Bác sĩ</label>
+        <select class="form-control" asp-for="BacSiId">
+            @foreach (var bs in ViewBag.BacSi)
+            {
+                <option value="@bs.BacSiId" selected="@(bs.BacSiId == Model.BacSiId)">
+                    @bs.HoTen
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Ngày hẹn</label>
+        <input asp-for="NgayHen" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Ghi chú</label>
+        <textarea asp-for="GhiChu" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Cập nhật</button>
+    <a class="btn btn-secondary" asp-action="Index">Quay lại</a>
+</form>

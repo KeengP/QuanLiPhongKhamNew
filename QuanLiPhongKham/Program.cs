@@ -1,58 +1,58 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using QuanLiPhongKham.Data;
-using QuanLiPhongKham.Models; // ✅ thêm dòng này để gọi DbContext của phòng khám
+using QuanLiPhongKham.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// -----------------------------
-// 🔹 Kết nối database Identity (hệ thống tài khoản)
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+// Serilog
+builder.Host.UseSerilog((context, config) =>
+{
+    config.ReadFrom.Configuration(context.Configuration);
+});
 
-// 🔹 Cấu hình Identity
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-// -----------------------------
-// 🔹 Kết nối database chính của phòng khám
+// Database
 builder.Services.AddDbContext<QuanLiPhongKhamContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ClinicConnection")));
 
-// -----------------------------
-// 🔹 Cấu hình MVC
+// Session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Cookie Authentication (KHÔNG sử dụng Identity)
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/User/Login";             // Chưa login → chuyển vào Login
+        options.AccessDeniedPath = "/User/AccessDenied"; // Không đủ quyền → AccessDenied
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
+
+// MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// -----------------------------
-// 🔹 Cấu hình pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
+// Middlewares
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // ✅ thêm để bật hệ thống đăng nhập
+// Authentication + Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
-// -----------------------------
-// 🔹 Cấu hình route mặc định
+app.UseSession();
+
+// Default Route
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}"); // trở về Home/Index làm trang chính
-app.MapRazorPages();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

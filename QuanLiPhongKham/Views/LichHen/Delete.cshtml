@@ -1,0 +1,19 @@
+﻿@model QuanLiPhongKham.Models.LichHen
+
+<h2>Xóa Lịch hẹn</h2>
+
+<div class="alert alert-danger">
+    <p>Bạn có chắc chắn muốn xóa lịch hẹn này?</p>
+</div>
+
+<ul>
+    <li><strong>Bệnh nhân:</strong> @Model.BenhNhan?.HoTen</li>
+    <li><strong>Bác sĩ:</strong> @Model.BacSi?.HoTen</li>
+    <li><strong>Ngày hẹn:</strong> @Model.NgayHen?.ToString("dd/MM/yyyy HH:mm")</li>
+</ul>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="LichHenId" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

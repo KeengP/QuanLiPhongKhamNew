@@ -1,0 +1,27 @@
+﻿@model QuanLiPhongKham.Models.ChiTietDonThuoc
+
+<h2 class="text-center mb-4">Sửa chi tiết thuốc</h2>
+
+<form asp-action="Edit" method="post" class="w-50 mx-auto">
+
+    <input type="hidden" asp-for="ChiTietId" />
+    <input type="hidden" asp-for="DonThuocId" />
+
+    <div class="form-group mb-3">
+        <label>Tên thuốc</label>
+        <input class="form-control" asp-for="TenThuoc" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Liều lượng</label>
+        <input class="form-control" asp-for="LieuLuong" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Số lượng</label>
+        <input class="form-control" asp-for="SoLuong" type="number" />
+    </div>
+
+    <button class="btn btn-primary">Cập nhật</button>
+    <a class="btn btn-secondary" href="/DonThuoc/Details/@Model.DonThuocId">Quay lại</a>
+</form>

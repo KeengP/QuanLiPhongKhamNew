@@ -1,0 +1,48 @@
+﻿@model QuanLiPhongKham.Models.DonThuoc
+
+<h2 class="text-center mb-4">Chi tiết đơn thuốc</h2>
+
+<div class="card p-3 w-75 mx-auto">
+    <p><strong>Mã đơn:</strong> @Model.DonThuocId</p>
+    <p><strong>Bệnh nhân:</strong> @Model.LichHen?.BenhNhan?.HoTen</p>
+    <p><strong>Bác sĩ:</strong> @Model.LichHen?.BacSi?.HoTen</p>
+    <p><strong>Ngày lập:</strong> @Model.NgayLap?.ToString("dd/MM/yyyy")</p>
+    <p><strong>Ghi chú:</strong> @Model.GhiChu</p>
+</div>
+
+<h4 class="text-center mt-4">Danh sách thuốc</h4>
+
+<div class="text-end mb-2 w-75 mx-auto">
+    <a class="btn btn-primary" href="/ChiTietDonThuoc/Create?donThuocId=@Model.DonThuocId">
+        + Thêm thuốc
+    </a>
+</div>
+
+<table class="table table-bordered w-75 mx-auto text-center">
+    <thead>
+        <tr>
+            <th>Tên thuốc</th>
+            <th>Liều lượng</th>
+            <th>Số lượng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ct in Model.ChiTietDonThuocs)
+        {
+            <tr>
+                <td>@ct.TenThuoc</td>
+                <td>@ct.LieuLuong</td>
+                <td>@ct.SoLuong</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" href="/ChiTietDonThuoc/Edit/@ct.ChiTietId">Sửa</a>
+                    <a class="btn btn-danger btn-sm" href="/ChiTietDonThuoc/Delete/@ct.ChiTietId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center mt-3">
+    <a class="btn btn-secondary" asp-action="Index">Quay lại</a>
+</div>

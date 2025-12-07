@@ -1,0 +1,53 @@
+﻿@model QuanLiPhongKham.Models.LichHen
+
+<h2>Tạo lịch hẹn</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label>Bệnh nhân</label>
+        <select asp-for="BenhNhanId" class="form-control">
+            @foreach (var bn in ViewBag.BenhNhan)
+            {
+                <option value="@bn.BenhNhanId">@bn.HoTen</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Bác sĩ</label>
+        <select asp-for="BacSiId" class="form-control">
+            @foreach (var bs in ViewBag.BacSi)
+            {
+                <option value="@bs.BacSiId">@bs.HoTen</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Ngày hẹn</label>
+        <input asp-for="NgayHen"
+               type="datetime-local"
+               class="form-control"
+               value="@(Model?.NgayHen.HasValue == true
+                                       ? Model.NgayHen.Value.ToString("yyyy-MM-ddTHH:mm")
+                                       : "")" />
+    </div>
+
+    <div class="form-group">
+        <label>Trạng thái</label>
+        <select asp-for="TrangThai" class="form-control">
+            <option value="Mở">Mở</option>
+            <option value="Đã khám">Đã khám</option>
+            <option value="Hủy">Hủy</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Ghi chú</label>
+        <textarea asp-for="GhiChu" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Danh sách Bệnh nhân";
+    bool isAdmin = User.IsInRole("Admin");
 }
 
 <h2 class="text-center text-primary mb-4">Danh sách Bệnh nhân</h2>
@@ -11,9 +12,12 @@
         ← Quay lại trang chủ
     </a>
 
-    <a asp-action="Create" class="btn btn-success float-end">
-        + Thêm bệnh nhân
-    </a>
+    @if (isAdmin)
+    {
+        <a asp-action="Create" class="btn btn-success float-end">
+            + Thêm bệnh nhân
+        </a>
+    }
 </div>
 
 <table class="table table-bordered table-hover">
@@ -40,8 +44,12 @@
                 <td>@item.Email</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.BenhNhanId" class="btn btn-info btn-sm">Xem</a>
-                    <a asp-action="Edit" asp-route-id="@item.BenhNhanId" class="btn btn-warning btn-sm">Sửa</a>
-                    <a asp-action="Delete" asp-route-id="@item.BenhNhanId" class="btn btn-danger btn-sm">Xóa</a>
+
+                    @if (isAdmin)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.BenhNhanId" class="btn btn-warning btn-sm">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@item.BenhNhanId" class="btn btn-danger btn-sm">Xóa</a>
+                    }
                 </td>
             </tr>
         }

@@ -1,0 +1,27 @@
+﻿@model QuanLiPhongKham.Models.DonThuoc
+
+<h2 class="text-center mb-4">Sửa đơn thuốc</h2>
+
+<form asp-action="Edit" method="post" class="w-50 mx-auto">
+    <input type="hidden" asp-for="DonThuocId" />
+
+    <div class="form-group mb-3">
+        <label>Lịch hẹn</label>
+        <select class="form-control" asp-for="LichHenId">
+            @foreach (var lh in ViewBag.LichHen)
+            {
+                <option value="@lh.LichHenId" selected="@(lh.LichHenId == Model.LichHenId)">
+                    @lh.LichHenId - @lh.BenhNhan.HoTen (BS: @lh.BacSi.HoTen)
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Ghi chú</label>
+        <textarea class="form-control" asp-for="GhiChu"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Cập nhật</button>
+    <a class="btn btn-secondary" asp-action="Index">Quay lại</a>
+</form>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DoanhThuViewModel>
+
+<h2>Thống kê doanh thu theo năm</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Năm</th>
+            <th>Doanh thu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Label</td>
+                <td>@item.Value.ToString("N0") đ</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<canvas id="chart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = @Html.Raw(Json.Serialize(Model.Select(x => x.Label)));
+    const values = @Html.Raw(Json.Serialize(Model.Select(x => x.Value)));
+
+    new Chart(document.getElementById('chart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu',
+                data: values,
+                borderWidth: 2
+            }]
+        }
+    });
+</script>

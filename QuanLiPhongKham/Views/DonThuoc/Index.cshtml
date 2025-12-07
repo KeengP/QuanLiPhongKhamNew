@@ -1,0 +1,50 @@
+﻿@model IEnumerable<QuanLiPhongKham.Models.DonThuoc>
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+}
+
+<h2 class="text-center mb-4">Danh sách đơn thuốc</h2>
+
+<div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-secondary" href="/">← Quay lại trang chủ</a>
+
+    @if (isAdmin)
+    {
+        <a class="btn btn-primary" asp-action="Create">+ Tạo đơn thuốc</a>
+    }
+</div>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>Mã đơn</th>
+            <th>Bệnh nhân</th>
+            <th>Bác sĩ</th>
+            <th>Ngày lập</th>
+            <th>Ghi chú</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DonThuocId</td>
+                <td>@item.LichHen?.BenhNhan?.HoTen</td>
+                <td>@item.LichHen?.BacSi?.HoTen</td>
+                <td>@item.NgayLap?.ToString("dd/MM/yyyy")</td>
+                <td>@item.GhiChu</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.DonThuocId">Xem</a>
+
+                    @if (isAdmin)
+                    {
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.DonThuocId">Sửa</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.DonThuocId">Xóa</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLiPhongKham.Models.LichHen>
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">Danh sách lịch hẹn</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a class="btn btn-secondary" href="/">← Quay lại trang chủ</a>
+
+        @if (isAdmin)
+        {
+            <a class="btn btn-primary" asp-action="Create">Tạo lịch hẹn</a>
+        }
+    </div>
+
+    <table class="table table-bordered text-center">
+        <thead class="table-light">
+            <tr>
+                <th>Bệnh nhân</th>
+                <th>Bác sĩ</th>
+                <th>Ngày hẹn</th>
+                <th>Ghi chú</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.BenhNhan?.HoTen</td>
+                        <td>@item.BacSi?.HoTen</td>
+                        <td>@item.NgayHen?.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.GhiChu</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.LichHenId">Xem</a>
+
+                            @if (isAdmin)
+                            {
+                                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.LichHenId">Sửa</a>
+                                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.LichHenId">Xóa</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">
+                        Chưa có lịch hẹn nào
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

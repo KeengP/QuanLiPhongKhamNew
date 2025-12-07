@@ -1,0 +1,19 @@
+﻿@model QuanLiPhongKham.Models.ChiTietDonThuoc
+
+<h2 class="text-center text-danger mb-4">Xóa thuốc</h2>
+
+<div class="alert alert-danger w-50 mx-auto text-center">
+    Bạn có chắc muốn xóa thuốc khỏi đơn này?
+</div>
+
+<ul class="w-50 mx-auto">
+    <li><strong>Tên thuốc:</strong> @Model.TenThuoc</li>
+    <li><strong>Liều lượng:</strong> @Model.LieuLuong</li>
+    <li><strong>Số lượng:</strong> @Model.SoLuong</li>
+</ul>
+
+<form asp-action="Delete" method="post" class="text-center">
+    <input type="hidden" asp-for="ChiTietId" />
+    <button class="btn btn-danger">Xóa</button>
+    <a class="btn btn-secondary" href="/DonThuoc/Details/@Model.DonThuocId">Hủy</a>
+</form>
